@@ -10,6 +10,9 @@ public:
     const std::string& getModel() const;
     int getYear() const;
     int getMileage() const;
+
+    void setModel(const std::string& model);
+    void setYear(int year);
     void setMileage(int mileage);
 
 private:

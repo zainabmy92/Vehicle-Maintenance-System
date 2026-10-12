@@ -1,4 +1,5 @@
 #pragma once
+
 #include "VehicleManager.h"
 
 class MaintenanceSystemFacade {
@@ -13,5 +14,6 @@ private:
     void addMaintenance();
     void searchVehicle() const;
     void showHistory() const;
+    void editVehicle();
     void removeVehicle();
 };
