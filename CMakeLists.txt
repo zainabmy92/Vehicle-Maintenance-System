@@ -10,17 +10,20 @@ file(GLOB SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 add_executable(vehicle_maintenance ${SOURCES})
 target_include_directories(vehicle_maintenance PRIVATE include)
 
-# Testing
-enable_testing()
+# GoogleTest unit tests
+include(CTest)
+if(BUILD_TESTING)
+    find_package(GTest CONFIG REQUIRED)
+    include(GoogleTest)
 
-add_executable(test_vehicle
-    tests/test_vehicle.cpp
-    src/Vehicle.cpp
-)
-
-target_include_directories(test_vehicle PRIVATE include)
-
-add_test(
-    NAME VehicleTest
-    COMMAND test_vehicle
-)
+    add_executable(test_vehicle
+        tests/test_vehicle.cpp
+        src/Vehicle.cpp
+        src/VehicleManager.cpp
+        src/MaintenanceRecord.cpp
+        src/FileManager.cpp
+    )
+    target_include_directories(test_vehicle PRIVATE include)
+    target_link_libraries(test_vehicle PRIVATE GTest::gtest_main)
+    gtest_discover_tests(test_vehicle)
+endif()

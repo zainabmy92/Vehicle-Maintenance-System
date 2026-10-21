@@ -1,20 +1,45 @@
+#include <gtest/gtest.h>
+
 #include "Vehicle.h"
-#include <cassert>
+#include "VehicleManager.h"
+
 #include <iostream>
+#include <sstream>
+#include <string>
 
-int main()
-{
-    Vehicle car("ABC-123", "Toyota Corolla", 2020, 65000);
+TEST(VehicleTest, InitialState) {
+    Vehicle vehicle("ABC-123", "Toyota Corolla", 2020, 65000);
 
-    assert(car.getPlate() == "ABC-123");
-    assert(car.getModel() == "Toyota Corolla");
-    assert(car.getYear() == 2020);
-    assert(car.getMileage() == 65000);
+    EXPECT_EQ(vehicle.getPlate(), "ABC-123");
+    EXPECT_EQ(vehicle.getModel(), "Toyota Corolla");
+    EXPECT_EQ(vehicle.getYear(), 2020);
+    EXPECT_EQ(vehicle.getMileage(), 65000);
+}
 
-    car.setMileage(70000);
-    assert(car.getMileage() == 70000);
+TEST(VehicleManagerTest, EditVehicle) {
+    VehicleManager manager;
+    ASSERT_TRUE(manager.addVehicle(Vehicle("ABC-123", "Toyota Corolla", 2020, 65000)));
 
-    std::cout << "Vehicle tests passed successfully!\n";
+    ASSERT_TRUE(manager.editVehicle("ABC-123", "Hyundai Tucson", 2022, 70000));
 
-    return 0;
+    const Vehicle* updated = manager.findVehicle("ABC-123");
+    ASSERT_NE(updated, nullptr);
+    EXPECT_EQ(updated->getModel(), "Hyundai Tucson");
+    EXPECT_EQ(updated->getYear(), 2022);
+    EXPECT_EQ(updated->getMileage(), 70000);
+}
+
+TEST(VehicleManagerTest, ListVehiclesOutput) {
+    VehicleManager manager;
+    ASSERT_TRUE(manager.addVehicle(Vehicle("ABC-123", "Toyota Corolla", 2020, 65000)));
+
+    std::ostringstream output;
+    std::streambuf* originalBuffer = std::cout.rdbuf(output.rdbuf());
+    manager.listVehicles();
+    std::cout.rdbuf(originalBuffer);
+
+    const std::string text = output.str();
+    EXPECT_NE(text.find("ABC-123"), std::string::npos);
+    EXPECT_NE(text.find("Toyota Corolla"), std::string::npos);
+    EXPECT_NE(text.find("65000"), std::string::npos);
 }
