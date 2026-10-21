@@ -1,0 +1,47 @@
+/**
+@mainpage Vehicle Maintenance System
+
+@section overview Overview
+Vehicle Maintenance System is a C++17 command-line program for storing and
+managing vehicles and their maintenance records.
+
+@section capabilities Main capabilities
+- Add, list, search, edit, and remove vehicles.
+- Record maintenance history and view upcoming maintenance.
+- Load and save vehicle and maintenance data using CSV files.
+- Validate user input before accepting values.
+
+@section architecture Architecture
+- **Vehicle** represents vehicle details, including plate number, model,
+  model year, and mileage.
+- **MaintenanceRecord** represents maintenance information associated with a vehicle.
+- **VehicleManager** manages vehicle records and maintenance operations.
+- **MaintenanceSystemFacade** provides the command-line workflow for the application.
+- **FileManager** handles CSV persistence.
+
+The application demonstrates the **Facade** design pattern in its console
+interface and uses **Singleton** for its file manager.
+
+@section building Building and running
+From the project root in MSYS2 UCRT64:
+@code{.sh}
+./build.sh
+./_start.sh
+@endcode
+
+@section testing Unit testing
+Unit tests use GoogleTest. Run them after building:
+@code{.sh}
+ctest --test-dir build --output-on-failure
+@endcode
+
+@section documentation Generating documentation
+Install Doxygen in MSYS2 UCRT64, then run from the project root:
+@code{.sh}
+doxygen Doxyfile
+@endcode
+Open `build/docs/html/index.html` in a browser to explore the generated API.
+
+@note Generated documentation is stored under `build/` and is not committed
+when the existing `.gitignore` excludes that directory.
+*/
