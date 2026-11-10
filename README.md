@@ -1,28 +1,51 @@
-# Vehicle Maintenance Management System
 
-A small C++17 console application for managing vehicles and maintenance records.
+# Vehicle Maintenance System
+
+A C++ command-line application developed for the Production Software Engineering course at Széchenyi István University.
+
+The system manages vehicle information and maintenance records using a simple menu-driven interface.
 
 ## Features
-- Add/list/search/remove vehicles
-- Add maintenance records
-- Show maintenance history
-- Show upcoming maintenance within 1000 km
-- Save/load data using CSV files
-- Demonstrates Facade and Singleton design patterns
 
-## Build with MSYS2 UCRT64
+- Add, list, search, edit, and remove vehicles.
+- Add maintenance records and view maintenance history.
+- View upcoming maintenance.
+- Save and load data using CSV files.
+- Validate user input.
+
+## Build and Run
+
+From the project directory:
+
 ```bash
 ./build.sh
 ./_start.sh
 ```
 
-If scripts are not executable, use:
+## Testing
+
+The project includes three GoogleTest unit tests.
+
+Run the tests with:
+
 ```bash
-bash build.sh
-bash _start.sh
+ctest --test-dir build --output-on-failure
 ```
 
-## Data
-The application stores data in:
-- `data/vehicles.csv`
-- `data/maintenance.csv`
+## Documentation
+
+The project includes Doxygen documentation.
+
+Generate it using:
+
+```bash
+doxygen Doxyfile
+```
+
+Open `build/docs/html/index.html` to view the generated documentation.
+
+## Author
+
+Zainab Mohammed  
+Neptun Code: IL4QED  
+Széchenyi István University
