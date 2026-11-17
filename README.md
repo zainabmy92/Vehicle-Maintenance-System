@@ -1,7 +1,7 @@
 
 # Vehicle Maintenance System
 
-A C++ command-line application developed for the Production Software Engineering course at Széchenyi István University.
+A C++ command-line application developed for the Production Software Engineering course.
 
 The system manages vehicle information and maintenance records using a simple menu-driven interface.
 
@@ -46,6 +46,4 @@ Open `build/docs/html/index.html` to view the generated documentation.
 
 ## Author
 
-Zainab Mohammed  
-Neptun Code: IL4QED  
-Széchenyi István University
+Zainab Mohammed
